@@ -1,0 +1,47 @@
+management:
+  security:
+    enabled: false
+
+zuul:
+  sensitiveHeaders:
+  ignoreSecurityHeaders: false
+  prefix: /pf/api
+  ignoredPatterns: /**/query/service-providers/
+  routes:
+    event-service-operations:
+      path: /customers/**
+      stripPrefix: false
+      serviceId: EVENT-SERVICE
+
+activityFilter:
+  sessionTimeout: 10
+  authHeader: Authorization
+  whiteListfilters:
+    - login
+
+kafka:
+  host: localhost
+  port: 9092
+  topic:
+    activity_log: activityLogTopic
+    last_activity: lastActivityTopic
+  common_topic: dipp
+  group:
+    user: userGroup
+
+# HTTP Server
+server:
+  port: 8100   # HTTP (Tomcat) port
+#  ssl:
+#    key-store: ${user.home}/CORT-DIIM/api-gateway-service/ops-tools/res/keystore.p12
+#    key-store-password: password
+#    keyStoreType: PKCS12
+#    keyAlias: tomcat
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+      maximumSize: 100
+      maxQueueSize: 100
+      queueSizeRejectionThreshold: 100
