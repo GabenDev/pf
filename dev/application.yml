@@ -1,0 +1,58 @@
+logging:
+  pattern:
+    console: "%date{ISO8601} [%thread] %level %logger - %msg%n"
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+management:
+  security:
+    enabled: false
+
+# HTTP Server
+#server:
+#  ssl:
+#    key-store: ${user.home}/keystore.p12
+#    key-store-password: mypassword
+#    keyStoreType: PKCS12
+#    keyAlias: tomcat
+
+db.engine.cassandra: false
+db.engine.postgres: true
+
+jdbc:
+  url: jdbc:postgresql://localhost:5432/postgres
+  driver: org.postgresql.Driver
+  user: postgres
+  password: postgres
+
+spring:
+  cassandra:
+    host: localhost
+    port: 9042
+    username:
+    password:
+  freemarker:
+    enabled: false
+  zipkin:
+    enabled: false
+    baseUrl: http://localhost:9411
+  sleuth:
+    enabled: false
+    sampler:
+      percentage: 1.0
+
+cassandra:
+  host: localhost
+  port: 9042
+  username:
+  password:
+
+kafka:
+  host: localhost
+  port: 9092
+  commonTopic: dipp

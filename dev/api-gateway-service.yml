@@ -1,0 +1,26 @@
+management:
+  security:
+    enabled: false
+
+zuul:
+  sensitiveHeaders:
+  ignoreSecurityHeaders: false
+  prefix: /pf/api
+  ignoredPatterns: /**/query/pf
+  routes:
+    event-service-operations:
+      path: /customers/**
+      stripPrefix: false
+      serviceId: EVENT-SERVICE
+
+# HTTP Server
+server:
+  port: 8100   # HTTP (Tomcat) port
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+      maximumSize: 100
+      maxQueueSize: 100
+      queueSizeRejectionThreshold: 100
